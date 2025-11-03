@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:opulence/screens/statistics_screen.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -18,6 +19,21 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.white,
         title: Text(widget.title),
         actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const StatisticsScreen(),
+                ),
+              );
+            },
+            icon: SvgPicture.asset(
+              'assets/icons/graph.svg',
+              width: 24,
+              height: 24,
+            ),
+          ),
           IconButton(
             onPressed: () {
               print("hello");
@@ -109,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
         ),
-      )
+      ),
     );
   }
 }
