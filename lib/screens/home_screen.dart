@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:opulence/screens/statistics_screen.dart';
 
@@ -123,9 +124,21 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
+            Text('Any data here', style: TextStyle(fontSize: 18.0)),
+            Row(spacing: 10.0, children: [
+              ElevatedButton(onPressed: () => {
+                print("It works!")
+              }, child: Text('Lorem')),
+              ElevatedButton(onPressed: () => {
+                print("It works! 2")
+              }, child: Text('Ipsum')),
+              ElevatedButton(onPressed: () => {
+                print("It works! 3")
+              }, child: Text('Dolor'))
+            ],)
           ],
         ),
-      ),
+      )
     );
   }
 }
