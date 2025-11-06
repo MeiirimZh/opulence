@@ -13,6 +13,32 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String _msg = "";
+
+  void _setMsg(String newMsg) {
+    setState(() {
+      _msg = newMsg;
+      saveData();
+    });
+  }
+
+  Future<void> saveData() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('msg', _msg);
+  }
+
+  Future<void> loadData() async {
+    final prefs = await SharedPreferences.getInstance();
+    String msg = prefs.getString('msg') ?? "Привет, Lorem!";
+
+    _setMsg(msg);
+  }
+
+  @override
+  void initState() {
+    loadData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,21 +150,27 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-            Text('Any data here', style: TextStyle(fontSize: 18.0)),
-            Row(spacing: 10.0, children: [
-              ElevatedButton(onPressed: () => {
-                print("It works!")
-              }, child: Text('Lorem')),
-              ElevatedButton(onPressed: () => {
-                print("It works! 2")
-              }, child: Text('Ipsum')),
-              ElevatedButton(onPressed: () => {
-                print("It works! 3")
-              }, child: Text('Dolor'))
-            ],)
+            Text(_msg, style: TextStyle(fontSize: 18.0)),
+            Row(
+              spacing: 10.0,
+              children: [
+                ElevatedButton(
+                  onPressed: () => _setMsg("Привет, Lorem!"),
+                  child: Text('Lorem'),
+                ),
+                ElevatedButton(
+                  onPressed: () => _setMsg("Привет, Ipsum!"),
+                  child: Text('Ipsum'),
+                ),
+                ElevatedButton(
+                  onPressed: () => _setMsg("Привет, Dolor!"),
+                  child: Text('Dolor'),
+                ),
+              ],
+            ),
           ],
         ),
-      )
+      ),
     );
   }
 }
