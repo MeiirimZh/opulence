@@ -47,9 +47,9 @@ class _MyHomePageState extends State<MyHomePage> {
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
       final sum = _sumController.text;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Введенная сумма: $sum')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Введенная сумма: $sum')));
     }
   }
 
@@ -221,6 +221,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Поле обязательно для заполнения';
+                          }
+
+                          if (int.parse(value) < 0) {
+                            return 'Сумма не может быть меньше нуля';
                           }
                           return null;
                         },
