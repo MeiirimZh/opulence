@@ -18,6 +18,8 @@ class _MyHomePageState extends State<MyHomePage> {
   // Контролеры для получения текста
   final _sumController = TextEditingController();
 
+  final DateTime now = DateTime.now();
+
   @override
   void dispose() {
     _sumController.dispose();
@@ -51,6 +53,17 @@ class _MyHomePageState extends State<MyHomePage> {
         context,
       ).showSnackBar(SnackBar(content: Text('Введенная сумма: $sum')));
     }
+  }
+
+  void showTodayDate() {
+    int day = now.day;
+    int month = now.month;
+    int year = now.year;
+    String date = "$day.$month.$year";
+
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text("Сегодня: $date")));
   }
 
   Future<void> saveData() async {
@@ -93,9 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           IconButton(
-            onPressed: () {
-              print("hello");
-            },
+            onPressed: () => showTodayDate(),
             icon: SvgPicture.asset(
               'assets/icons/calendar.svg',
               width: 24,
@@ -193,8 +204,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Text(_inputAction),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.lightGreen,
-                        foregroundColor: Colors.white
-                      )
+                        foregroundColor: Colors.white,
+                      ),
                     ),
                     Expanded(
                       child: TextFormField(
@@ -221,8 +232,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Text(">"),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.lightGreen,
-                        foregroundColor: Colors.white
-                      )
+                        foregroundColor: Colors.white,
+                      ),
                     ),
                   ],
                 ),
