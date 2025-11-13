@@ -182,24 +182,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
               ),
-              // Text(_msg, style: TextStyle(fontSize: 18.0)),
-              // Row(
-              //   spacing: 10.0,
-              //   children: [
-              //     ElevatedButton(
-              //       onPressed: () => _setMsg("Привет, Lorem!"),
-              //       child: Text('Lorem'),
-              //     ),
-              //     ElevatedButton(
-              //       onPressed: () => _setMsg("Привет, Ipsum!"),
-              //       child: Text('Ipsum'),
-              //     ),
-              //     ElevatedButton(
-              //       onPressed: () => _setMsg("Привет, Dolor!"),
-              //       child: Text('Dolor'),
-              //     ),
-              //   ],
-              // ),
               Form(
                 key: _formKey,
                 child: Row(
@@ -209,6 +191,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     ElevatedButton(
                       onPressed: () => _setInputAction(),
                       child: Text(_inputAction),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.lightGreen,
+                        foregroundColor: Colors.white
+                      )
                     ),
                     Expanded(
                       child: TextFormField(
@@ -233,6 +219,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     ElevatedButton(
                       onPressed: () => _submitForm(),
                       child: Text(">"),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.lightGreen,
+                        foregroundColor: Colors.white
+                      )
                     ),
                   ],
                 ),
